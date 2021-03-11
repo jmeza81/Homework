@@ -1,28 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ParamsArray
+namespace MilitaryUnit
 {
     class Program
     {
-        static void doWork()
+        static void Main(string[] args)
         {
-            //Console.WriteLine(Util.Sum(10, 9, 8, 7, 6, 5, 4, 3, 2, 1));
-            Console.WriteLine(Util.Sum(2, 4, 6,8, 10));
+            CreateUnit();
         }
-
-        static void Main()
+        public static void CreateUnit()
         {
             try
             {
-                doWork();
+                Personnel mSergeant = new Sergeant("Sergeant", "GI Joe");
+                mSergeant.Command = "Special Counter-Terrorism Unit Delta";
+                mSergeant.Shoot();
+
+                Console.WriteLine();
+
+                Vehicle myAttackVehicle = new VampMarkII("VampMarkII", 5);
+                myAttackVehicle.StartEngine(6);
+                myAttackVehicle.Accelerate();
+                myAttackVehicle.Brake();
+                myAttackVehicle.Mount();
+
+                Console.WriteLine();
+
+                Weapon myRifle = new M4("M4", ".556", 0);
+                myRifle.Fire(30);
+                myRifle.Reload();
             }
-            catch (Exception ex)
+            catch( Exception ex)
             {
-                Console.WriteLine("Exception: {0}", ex.Message);
+                Console.WriteLine(ex.Message);
+                CreateUnit();
+            }
+            finally
+            {
+                Console.WriteLine("Yo Joe!");
             }
         }
     }
